@@ -7,6 +7,7 @@ load_dotenv(override=True)
 class Settings(BaseSettings):
     DATABASE_URL: str
     STATSIG_API_KEY: str
+    SECRET_KEY: str
 
     model_config = SettingsConfigDict(env_file=".env")
 
