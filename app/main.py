@@ -1,8 +1,6 @@
-from fastapi import FastAPI, Depends
+from fastapi import FastAPI
 
-from app.auth import get_current_user
 from app.routers import messages, config, auth
-
 
 def create_app() -> FastAPI:
     app = FastAPI()
@@ -12,8 +10,8 @@ def create_app() -> FastAPI:
     app.include_router(auth.router, prefix="/auth")
 
     @app.get("/protected")
-    def protected_route(current_user: dict = Depends(get_current_user)):
-        return {"message": "Ruta protegida", "user": current_user.email}
+    def protected_route():
+        return {"message": "Ruta protegida"}
 
     @app.get("/")
     def read_root():
