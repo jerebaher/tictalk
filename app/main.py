@@ -12,8 +12,8 @@ def create_app() -> FastAPI:
     app.include_router(auth.router, prefix="/auth")
 
     @app.get("/protected")
-    def read_protected_route(current_user: dict = Depends(get_current_user)):
-        return {"message": "Tienes acceso a este recurso protegido", "user": current_user}
+    def protected_route(current_user: dict = Depends(get_current_user)):
+        return {"message": "Ruta protegida", "user": current_user.email}
 
     @app.get("/")
     def read_root():
