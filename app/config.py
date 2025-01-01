@@ -7,6 +7,7 @@ load_dotenv(override=True)
 class Settings(BaseSettings):
     DATABASE_URL: str
     STATSIG_API_KEY: str
+    FIREBASE_CREDENTIALS_PATH: str
 
     model_config = SettingsConfigDict(env_file=".env")
 
