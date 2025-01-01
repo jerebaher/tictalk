@@ -11,6 +11,11 @@ class UserCreate(BaseModel):
     password: str
     name: str
 
+class UserResponse(BaseModel):
+    id: str
+    email: str
+    is_active: bool
+
 def register_user(db: Session, user_data: UserCreate):
     try:
         user = auth.create_user(
@@ -27,7 +32,13 @@ def register_user(db: Session, user_data: UserCreate):
         db.commit()
         db.refresh(new_user)
 
-        return {"message": "User registered successfully", "uid": user.uid}
+        response = UserResponse(
+            id=new_user.id,
+            email=new_user.email,
+            is_active=True
+        )
+
+        return response
 
     except IntegrityError:
         db.rollback()

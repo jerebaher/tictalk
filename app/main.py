@@ -1,6 +1,6 @@
 from fastapi import FastAPI, Depends
 
-from app.routers import messages, config, auth
+from app.routers import messages, config, auth, user
 
 def create_app() -> FastAPI:
     app = FastAPI(
@@ -12,12 +12,12 @@ def create_app() -> FastAPI:
     app.include_router(messages.router, prefix="/messages")
     app.include_router(config.router, prefix="/config")
     app.include_router(auth.router, prefix="/auth")
+    app.include_router(user.router, prefix="/user")
 
     @app.get("/")
     def read_root():
         return {"message": "Hey, here's TicTalk!"}
 
     return app
-
 
 app = create_app()
