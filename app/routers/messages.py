@@ -1,8 +1,7 @@
-from typing import List, Optional, Literal, Union
-
 from fastapi import APIRouter
-from pydantic import BaseModel, field_validator, Field, RootModel
 from datetime import datetime, timezone
+from typing import Literal, Optional, List
+from pydantic import BaseModel, Field, field_validator
 
 router = APIRouter()
 
